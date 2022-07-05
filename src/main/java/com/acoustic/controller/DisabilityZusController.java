@@ -2,7 +2,6 @@ package com.acoustic.controller;
 
 
 import com.acoustic.entity.DisabilityZus;
-import com.acoustic.rate.RatesConfigurationProperties;
 import com.acoustic.repository.DisabilityZusRepository;
 import com.acoustic.service.SalaryCalculatorService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Min;
 import java.math.BigDecimal;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -24,15 +22,16 @@ import java.util.Map;
 @Validated
 public class DisabilityZusController {
 
+    public static final String DESCRIPTION = "description";
+    public static final String VALUE = "value";
     private final DisabilityZusRepository disabilityZusRepository;
     private final SalaryCalculatorService salaryCalculatorService;
-    private final RatesConfigurationProperties ratesConfigurationProperties;
 
 
     @PostMapping("/getDisabilityZus/{grossMonthlySalary}")
-    public Map<String, BigDecimal> calculateTotalZus(@PathVariable @Min(2000)BigDecimal grossMonthlySalary){
-        var totalZus = salaryCalculatorService.apply(grossMonthlySalary);
-        this.disabilityZusRepository.save(DisabilityZus.builder().disabilityZusAmount(totalZus).disabilityZusRate(ratesConfigurationProperties.getDisabilityZusRate()).build());
-        return new LinkedHashMap<>(Map.of(salaryCalculatorService.getDescription(), totalZus));
+    public Map<String, String> calculateDisabilityZus(@PathVariable @Min(2000) BigDecimal grossMonthlySalary) {
+        var disabilityZus = salaryCalculatorService.apply(grossMonthlySalary);
+        this.disabilityZusRepository.save(DisabilityZus.builder().disabilityZusAmount(disabilityZus).build());
+        return Map.of(DESCRIPTION, salaryCalculatorService.getDescription(), VALUE, String.valueOf(disabilityZus));
     }
 }

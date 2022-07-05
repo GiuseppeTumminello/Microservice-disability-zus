@@ -8,8 +8,6 @@ import java.util.function.UnaryOperator;
 
 @Service
 public interface SalaryCalculatorService extends UnaryOperator<BigDecimal> {
-
-     String getDescription();
-
+    String getDescription();
 
 }

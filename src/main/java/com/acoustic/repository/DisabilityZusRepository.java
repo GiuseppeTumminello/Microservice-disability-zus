@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.acoustic.entity.DisabilityZus;
 
 @Repository
-public interface DisabilityZusRepository extends JpaRepository<DisabilityZus, Long> {
+public interface DisabilityZusRepository extends JpaRepository<DisabilityZus, Integer> {
 
 
 

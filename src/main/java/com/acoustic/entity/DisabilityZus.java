@@ -25,7 +25,6 @@ public class DisabilityZus {
 
     private BigDecimal disabilityZusAmount;
 
-    private BigDecimal disabilityZusRate;
 
 
 }
