@@ -14,7 +14,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("/disabilityZus")
+@RequestMapping("/disability-zus")
 @RequiredArgsConstructor
 @Validated
 @CrossOrigin
@@ -26,7 +26,7 @@ public class DisabilityZusController {
     private final SalaryCalculatorService salaryCalculatorService;
 
 
-    @PostMapping("/getDisabilityZus/{grossMonthlySalary}")
+    @PostMapping("/calculation/{grossMonthlySalary}")
     public Map<String, String> calculateDisabilityZus(@PathVariable @Min(2000) BigDecimal grossMonthlySalary) {
         var disabilityZus = salaryCalculatorService.apply(grossMonthlySalary);
         this.disabilityZusRepository.save(DisabilityZus.builder().disabilityZusAmount(disabilityZus).build());

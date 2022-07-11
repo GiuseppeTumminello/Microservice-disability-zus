@@ -27,7 +27,7 @@ class DisabilityZusControllerTest {
     public static final String DISABILITY_ZUS_DESCRIPTION = "Disability zus";
     public static final String DESCRIPTION = "description";
     public static final String VALUE = "value";
-    private final String DISABILITY_ZUS_ENDPOINT = "/disabilityZus/getDisabilityZus/";
+    private final String DISABILITY_ZUS_ENDPOINT = "/disability-zus/calculation/";
     @Autowired
     private MockMvc mockMvc;
     @Autowired
